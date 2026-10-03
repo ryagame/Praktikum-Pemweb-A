@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praktikum Web - Sistem Informasi Mahasiswa</title>
+</head>
+<body>
+
+    <header>
+        <h1>Sistem Informasi Data Mahasiswa - Praktikum 1 - Kelas Teknik Informatika</h1>
+        <p>Sistem ini dikembangkan sebagai platform terpadu untuk mendata, mengelola, dan memonitor informasi akademik mahasiswa secara efisien.</p>
+        <img src="https://via.placeholder.com/150" alt="Logo Sistem Informasi" width="150" height="150">
+        <hr>
+        <nav>
+            <ul>
+                <li><a href="#informasi">Informasi Aplikasi</a></li>
+                <li><a href="#daftar-mahasiswa">Daftar Mahasiswa</a></li>
+                <li><a href="#form-tambah">Tambah Mahasiswa Baru</a></li>
+            </ul>
+        </nav>
+        <hr>
+    <main>
+        <section id="informasi">
+            <h2>Informasi Sistem</h2>
+            <p>Aplikasi pendataan ini dibangun menggunakan standar semantik HTML5 terbaru untuk memastikan aksesibilitas yang baik bagi pengguna dan kemudahan pembacaan oleh mesin pencari.</p>
+            
+            <article>
+                <h3>Fitur Unggulan</h3>
+                <p>Sistem ini dirancang dengan antarmuka yang sederhana namun fungsional. Pengguna dapat melihat rekapitulasi data mahasiswa aktif pada tabel interaktif dan menambahkan data baru melalui formulir yang sudah dilengkapi dengan validasi otomatis.</p>
+            </article>
+        </section>
+        <hr>
+        <section id="daftar-mahasiswa">
+            <h2>Daftar Mahasiswa Aktif</h2>
+            <p>Berikut adalah rekapitulasi data mahasiswa yang saat ini terdaftar dan berstatus aktif pada tahun akademik berjalan.</p>
+            
+            <table border="1" cellpadding="8" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Foto</th>
+                        <th>NPM</th>
+                        <th>Nama Lengkap</th>
+                        <th>Program Studi</th>
+                        <th>Angkatan</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><img src="https://via.placeholder.com/50" alt="Foto Farel"></td>
+                        <td>2315061118</td>
+                        <td>Farel Raditya Surya Negara</td>
+                        <td>Teknik Informatika</td>
+                        <td>2024</td>
+                        <td>farel.raditya@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><img src="https://via.placeholder.com/50" alt="Foto Budi"></td>
+                        <td>2315061119</td>
+                        <td>Budi Santoso</td>
+                        <td>Sistem Informasi</td>
+                        <td>2024</td>
+                        <td>budi.s@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><img src="https://via.placeholder.com/50" alt="Foto Siti"></td>
+                        <td>2315061120</td>
+                        <td>Siti Aminah</td>
+                        <td>Teknik Elektro</td>
+                        <td>2024</td>
+                        <td>siti.aminah@example.com</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <hr>
+        <section id="form-tambah">
+            <h2>Tambah Mahasiswa Baru</h2>
+            <p>Silakan lengkapi formulir di bawah ini dengan data yang valid. Kolom yang ditandai wajib diisi sebelum data dapat disimpan.</p>
+            
+            <form action="#" method="POST">
+                <fieldset>
+                    <legend>Data Identitas Mahasiswa</legend>
+                    
+                    <!-- Field 1: NPM -->
+                    <p>
+                        <label for="npm">Nomor Pokok Mahasiswa (NPM):</label><br>
+                        <input type="text" id="npm" name="npm" placeholder="Contoh: 2315061118" required pattern="[0-9]{8,12}" title="NPM harus berupa angka 8-12 digit"><br>
+                        <small>Masukkan NPM yang terdaftar resmi di kampus.</small>
+                    </p>
+
+                    <!-- Field 2: Nama Lengkap -->
+                    <p>
+                        <label for="nama">Nama Lengkap:</label><br>
+                        <input type="text" id="nama" name="nama" placeholder="Contoh: M. Sidiq Firdaus" required minlength="3" maxlength="100"><br>
+                        <small>Tuliskan nama lengkap sesuai dengan KTP atau ijazah.</small>
+                    </p>
+
+                    <!-- Field 3: Program Studi -->
+                    <p>
+                        <label for="program_studi">Program Studi:</label><br>
+                        <select id="program_studi" name="program_studi" required>
+                            <option value="">Pilih Program Studi</option>
+                            <option value="Teknik Informatika">Teknik Informatika</option>
+                            <option value="Teknik Elektro">Teknik Elektro</option>
+                        </select><br>
+                        <small>Pilih program studi yang sedang ditempuh.</small>
+                    </p>
+
+                    <!-- Field 4: Angkatan -->
+                    <p>
+                        <label for="angkatan">Tahun Angkatan:</label><br>
+                        <input type="number" id="angkatan" name="angkatan" placeholder="Contoh: 2024" required min="2018" max="2026"><br>
+                        <small>Pilih tahun angkatan antara 2018 hingga 2026.</small>
+                    </p>
+
+                    <!-- Field 5: Email -->
+                    <p>
+                        <label for="email">Alamat Email:</label><br>
+                        <input type="email" id="email" name="email" placeholder="Contoh: email@example.com" required><br>
+                        <small>Gunakan email kampus jika memungkinkan.</small>
+                    </p>
+
+                    <!-- Field 6: Tombol -->
+                    <p>
+                        <button type="submit">Simpan Data Mahasiswa</button>
+                        <button type="reset">Reset Formulir</button>
+                    </p>
+                </fieldset>
+            </form>
+        </section>
+    </main>
+
+</body>
+</html>
+    </header>
