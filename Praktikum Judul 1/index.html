@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Sistem Informasi Data Mahasiswa - Praktikum 1 - Kelas PPWA</h1>
+        <p>Sistem yang berisi Informasi dan Data Seluruh Mahasiswa Unila</p>
+        <img src="gambar.jpg" alt="Logo Sistem"> 
+    </header>
+    <hr>
+    <nav>
+        <ul>
+            <li><a href="#informasi">Informasi Aplikasi</a></li>
+            <li><a href="#daftar-mahasiswa">Daftar Mahasiswa</a></li>
+            <li><a href="#form-tambah">Tambah Mahasiswa Baru</a></li>
+        </ul>
+    </nav>
+    <hr>
+    <main>
+        <section id="informasi">
+            <h2>Informasi Sistem</h2>
+            <p>Informasi Mengenai Sistem Daftar Mahasiswa</p>
+            <article>
+                <h3>Alur Kerja dari Sistem</h3>
+                <p>Bagaimana Data dari Mahasiswa Diolah Oleh Sistem Menjadi Informasi</p>
+            </article>
+        </section>
+        <hr>
+        <section id="daftar-mahasiswa">
+            <h2>Daftar Mahasiswa Aktif</h2>
+            <p>Daftar Seluruh Mahasiswa Aktif di Unila</p>
+            
+            <table border="1" cellpadding="8" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No</th><th>Foto</th><th>NPM</th><th>Nama Lengkap</th><th>Program Studi</th><th>Angkatan</th><th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td><img src="foto1.jpg" alt="Foto Andi"></td><td>01</td><td>Andi</td><td>Teknik Informatika</td><td>2024</td><td>andi@gmail.com</td></tr>
+                    <tr><td>2</td><td><img src="foto2.jpg" alt="Foto Budi"></td><td>02</td><td>Budi</td><td>Teknik Informatika</td><td>2024</td><td>budi@gmail.com</td></tr>
+                    <tr><td>3</td><td><img src="foto3.jpg" alt="Foto Cindi"></td><td>03</td><td>Cindi</td><td>Teknik Informatika</td><td>2024</td><td>cindi@gmail.com</td></tr>
+                </tbody>
+            </table>
+        </section>
+        <hr>
+        <section id="form-tambah">
+            <h2>Tambah Mahasiswa Baru</h2>
+            <p>Formulir Untuk Menambah Mahasiswa Baru</p>
+            
+            <form action="#" method="POST">
+                <fieldset>
+                    <legend>Data Identitas Mahasiswa</legend>
+                        <p>
+                            <label for="npm">Nomor Pokok Mahasiswa (NPM)</label>
+                            <br>
+                            <input type="text" id="npm" name="npm" placeholder="2415061117" required pattern="[0-9]{8,12}" title="NPM harus berupa angka 8-12 digit">
+                            <br>
+                            <small>npm</small>
+                        </p>
+                        <p>
+                            <label for="nama">Nama Lengkap:</label>
+                            <br>
+                            <input type="text" id="nama" name="nama" placeholder="Farel Raditya Surya Negara" required minlength="3" maxlength="100">
+                            <br>
+                            <small>nama</small>
+                        </p>
+                        <p>
+                           <label for="program_studi">Program Studi:</label>
+                            <br>
+                            <select id="program_studi" name="program_studi" required>
+                                <option value="">Pilih Program Studi</option>
+                                <option value="Teknik Informatika">Teknik Informatika</option>
+                            </select>
+                            <br>
+                            <small>prodi</small> 
+                        </p>
+                        <p>
+                            <label for="angkatan">Tahun Angkatan:</label>
+                            <br>
+                            <input type="number" id="angkatan" name="angkatan" placeholder="2024" required min="2018" max="2026">
+                            <br>
+                            <small>angkatan</small>
+                        </p>
+                        <p>
+                            <label for="email">Alamat Email:</label>
+                            <br>
+                            <input type="email" id="email" name="email" placeholder="farel@gmail.com" required>
+                            <br>
+                            <small>email</small>
+                        </p>
+                        <p>
+                            <button type="submit">Simpan Data Mahasiswa</button>
+                            <button type="reset">Reset Formulir</button>
+                        </p>
+                </fieldset>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

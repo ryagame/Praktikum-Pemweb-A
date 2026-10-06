@@ -3,139 +3,304 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Praktikum Web - Sistem Informasi Mahasiswa</title>
+    <title>Sistem Informasi Data Mahasiswa</title>
+    
+    <!-- Memasukkan CSS langsung menggunakan tag <style> -->
+    <style>
+        /* 1. Universal Box Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        /* 2. Variabel CSS Global (:root) */
+        :root {
+            --color-primary: #1d4ed8;
+            --color-primary-dark: #1e40af;
+            --color-bg: #f8fafc;
+            --color-surface: #ffffff;
+            --color-text: #0f172a;
+            --color-text-muted: #64748b;
+            --color-border: #e2e8f0;
+            --radius: 8px;
+            --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* 3. Pengaturan Dasar Body & Tipografi */
+        body {
+            font-family: var(--font-main);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-primary-dark);
+        }
+
+        /* 4. Tata Letak Flexbox: Header & Navigasi */
+        header {
+            background-color: var(--color-surface);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav a {
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+        }
+
+        /* 5. Kontainer Utama & Kartu (Section/Article) */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section, article {
+            background-color: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        hr {
+            display: none;
+        }
+
+        /* 6. Penataan Tabel Data Mahasiswa */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        th {
+            background-color: var(--color-bg);
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+
+        tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        img[alt^="Foto"] {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* 7. Penataan Formulir Interaktif (CSS Grid) */
+        form fieldset {
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        form legend {
+            font-weight: bold;
+            color: var(--color-primary);
+            padding: 0 0.5rem;
+        }
+
+        form p {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        input, select {
+            padding: 0.75rem;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
+        }
+
+        form p:last-child {
+            grid-column: 1 / -1; 
+            flex-direction: row;
+            gap: 1rem;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        button[type="submit"] {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        button[type="submit"]:hover {
+            background-color: var(--color-primary-dark);
+        }
+
+        /* 8. Media Queries (Desain Responsif) */
+        @media (max-width: 768px) {
+            form fieldset {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            button {
+                width: 100%;
+            }
+            form p:last-child {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-
     <header>
-        <h1>Sistem Informasi Data Mahasiswa - Praktikum 1 - Kelas Teknik Informatika</h1>
-        <p>Sistem ini dikembangkan sebagai platform terpadu untuk mendata, mengelola, dan memonitor informasi akademik mahasiswa secara efisien.</p>
-        <img src="https://via.placeholder.com/150" alt="Logo Sistem Informasi" width="150" height="150">
-        <hr>
-        <nav>
-            <ul>
-                <li><a href="#informasi">Informasi Aplikasi</a></li>
-                <li><a href="#daftar-mahasiswa">Daftar Mahasiswa</a></li>
-                <li><a href="#form-tambah">Tambah Mahasiswa Baru</a></li>
-            </ul>
-        </nav>
-        <hr>
+        <h1>Sistem Informasi Data Mahasiswa - Praktikum 1 - Kelas PPWA</h1>
+        <p>Sistem yang berisi Informasi dan Data Seluruh Mahasiswa Unila</p>
+        <img src="gambar.jpg" alt="Logo Sistem"> 
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#informasi">Informasi Aplikasi</a></li>
+            <li><a href="#daftar-mahasiswa">Daftar Mahasiswa</a></li>
+            <li><a href="#form-tambah">Tambah Mahasiswa Baru</a></li>
+        </ul>
+    </nav>
+    
     <main>
         <section id="informasi">
             <h2>Informasi Sistem</h2>
-            <p>Aplikasi pendataan ini dibangun menggunakan standar semantik HTML5 terbaru untuk memastikan aksesibilitas yang baik bagi pengguna dan kemudahan pembacaan oleh mesin pencari.</p>
-            
+            <p>Informasi Mengenai Sistem Daftar Mahasiswa</p>
             <article>
-                <h3>Fitur Unggulan</h3>
-                <p>Sistem ini dirancang dengan antarmuka yang sederhana namun fungsional. Pengguna dapat melihat rekapitulasi data mahasiswa aktif pada tabel interaktif dan menambahkan data baru melalui formulir yang sudah dilengkapi dengan validasi otomatis.</p>
+                <h3>Alur Kerja dari Sistem</h3>
+                <p>Bagaimana Data dari Mahasiswa Diolah Oleh Sistem Menjadi Informasi</p>
             </article>
         </section>
-        <hr>
+        
         <section id="daftar-mahasiswa">
             <h2>Daftar Mahasiswa Aktif</h2>
-            <p>Berikut adalah rekapitulasi data mahasiswa yang saat ini terdaftar dan berstatus aktif pada tahun akademik berjalan.</p>
+            <p>Daftar Seluruh Mahasiswa Aktif di Unila</p>
             
-            <table border="1" cellpadding="8" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Foto</th>
-                        <th>NPM</th>
-                        <th>Nama Lengkap</th>
-                        <th>Program Studi</th>
-                        <th>Angkatan</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><img src="https://via.placeholder.com/50" alt="Foto Farel"></td>
-                        <td>2315061118</td>
-                        <td>Farel Raditya Surya Negara</td>
-                        <td>Teknik Informatika</td>
-                        <td>2024</td>
-                        <td>farel.raditya@example.com</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><img src="https://via.placeholder.com/50" alt="Foto Budi"></td>
-                        <td>2315061119</td>
-                        <td>Budi Santoso</td>
-                        <td>Sistem Informasi</td>
-                        <td>2024</td>
-                        <td>budi.s@example.com</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><img src="https://via.placeholder.com/50" alt="Foto Siti"></td>
-                        <td>2315061120</td>
-                        <td>Siti Aminah</td>
-                        <td>Teknik Elektro</td>
-                        <td>2024</td>
-                        <td>siti.aminah@example.com</td>
-                    </tr>
-                </tbody>
-            </table>
+            <!-- Bungkus tabel menggunakan class table-responsive -->
+            <div class="table-responsive">
+                <table border="1" cellpadding="8" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>No</th><th>Foto</th><th>NPM</th><th>Nama Lengkap</th><th>Program Studi</th><th>Angkatan</th><th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td><img src="foto1.jpg" alt="Foto Andi"></td><td>01</td><td>Andi</td><td>Teknik Informatika</td><td>2024</td><td>andi@gmail.com</td></tr>
+                        <tr><td>2</td><td><img src="foto2.jpg" alt="Foto Budi"></td><td>02</td><td>Budi</td><td>Teknik Informatika</td><td>2024</td><td>budi@gmail.com</td></tr>
+                        <tr><td>3</td><td><img src="foto3.jpg" alt="Foto Cindi"></td><td>03</td><td>Cindi</td><td>Teknik Informatika</td><td>2024</td><td>cindi@gmail.com</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
-        <hr>
+        
         <section id="form-tambah">
             <h2>Tambah Mahasiswa Baru</h2>
-            <p>Silakan lengkapi formulir di bawah ini dengan data yang valid. Kolom yang ditandai wajib diisi sebelum data dapat disimpan.</p>
+            <p>Formulir Untuk Menambah Mahasiswa Baru</p>
             
             <form action="#" method="POST">
                 <fieldset>
                     <legend>Data Identitas Mahasiswa</legend>
-                    
-                    <!-- Field 1: NPM -->
-                    <p>
-                        <label for="npm">Nomor Pokok Mahasiswa (NPM):</label><br>
-                        <input type="text" id="npm" name="npm" placeholder="Contoh: 2315061118" required pattern="[0-9]{8,12}" title="NPM harus berupa angka 8-12 digit"><br>
-                        <small>Masukkan NPM yang terdaftar resmi di kampus.</small>
-                    </p>
-
-                    <!-- Field 2: Nama Lengkap -->
-                    <p>
-                        <label for="nama">Nama Lengkap:</label><br>
-                        <input type="text" id="nama" name="nama" placeholder="Contoh: M. Sidiq Firdaus" required minlength="3" maxlength="100"><br>
-                        <small>Tuliskan nama lengkap sesuai dengan KTP atau ijazah.</small>
-                    </p>
-
-                    <!-- Field 3: Program Studi -->
-                    <p>
-                        <label for="program_studi">Program Studi:</label><br>
-                        <select id="program_studi" name="program_studi" required>
-                            <option value="">Pilih Program Studi</option>
-                            <option value="Teknik Informatika">Teknik Informatika</option>
-                            <option value="Teknik Elektro">Teknik Elektro</option>
-                        </select><br>
-                        <small>Pilih program studi yang sedang ditempuh.</small>
-                    </p>
-
-                    <!-- Field 4: Angkatan -->
-                    <p>
-                        <label for="angkatan">Tahun Angkatan:</label><br>
-                        <input type="number" id="angkatan" name="angkatan" placeholder="Contoh: 2024" required min="2018" max="2026"><br>
-                        <small>Pilih tahun angkatan antara 2018 hingga 2026.</small>
-                    </p>
-
-                    <!-- Field 5: Email -->
-                    <p>
-                        <label for="email">Alamat Email:</label><br>
-                        <input type="email" id="email" name="email" placeholder="Contoh: email@example.com" required><br>
-                        <small>Gunakan email kampus jika memungkinkan.</small>
-                    </p>
-
-                    <!-- Field 6: Tombol -->
-                    <p>
-                        <button type="submit">Simpan Data Mahasiswa</button>
-                        <button type="reset">Reset Formulir</button>
-                    </p>
+                        <p>
+                            <label for="npm">Nomor Pokok Mahasiswa (NPM)</label>
+                            <input type="text" id="npm" name="npm" placeholder="2415061117" required pattern="[0-9]{8,12}" title="NPM harus berupa angka 8-12 digit">
+                            <small>npm</small>
+                        </p>
+                        <p>
+                            <label for="nama">Nama Lengkap:</label>
+                            <input type="text" id="nama" name="nama" placeholder="Farel Raditya Surya Negara" required minlength="3" maxlength="100">
+                            <small>nama</small>
+                        </p>
+                        <p>
+                           <label for="program_studi">Program Studi:</label>
+                            <select id="program_studi" name="program_studi" required>
+                                <option value="">Pilih Program Studi</option>
+                                <option value="Teknik Informatika">Teknik Informatika</option>
+                            </select>
+                            <small>prodi</small> 
+                        </p>
+                        <p>
+                            <label for="angkatan">Tahun Angkatan:</label>
+                            <input type="number" id="angkatan" name="angkatan" placeholder="2024" required min="2018" max="2026">
+                            <small>angkatan</small>
+                        </p>
+                        <p>
+                            <label for="email">Alamat Email:</label>
+                            <input type="email" id="email" name="email" placeholder="farel@gmail.com" required>
+                            <small>email</small>
+                        </p>
+                        <p>
+                            <button type="submit">Simpan Data Mahasiswa</button>
+                            <button type="reset">Reset Formulir</button>
+                        </p>
                 </fieldset>
             </form>
         </section>
     </main>
-
 </body>
 </html>
-    </header>
