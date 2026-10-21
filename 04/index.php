@@ -7,12 +7,8 @@
 
 // memanggil file functions.php
 require_once __DIR__ . '/includes/functions.php';
-$page_title = 'Uji Fungsi Modular - Percobaan 1';
-$daftar_mahasiswa = get_all_mahasiswa();
-$total_semua = count_total_mahasiswa();
 
 // Ambil keyword pencarian jika ada
-
 // Percobaan 4-4 Langkah 2
 $keyword = isset($_GET['search']) ? trim($_GET['search']) : '';
 $daftar_mahasiswa = get_all_mahasiswa($keyword);
@@ -25,7 +21,6 @@ $flash = get_flash_message();
 
 $page_title = 'Beranda - Sistem Informasi Data Mahasiswa';
 require_once __DIR__ . '/includes/header.php';
-require_once __DIR__ . '/includes/footer.php';
 ?>
 
 <!-- Kotak Flash Message (Feedback Sukses / Error dari Server) -->
@@ -113,18 +108,15 @@ require_once __DIR__ . '/includes/footer.php';
             </thead>
             <tbody>
                 <?php if (empty($daftar_mahasiswa)): ?>
+                    <!-- Percobaan 4-2 Langkah 4 -->
                     <tr>
                         <td colspan="8" class="empty-row">
                             <?= !empty($keyword)
-                            ? 'Tidak ditemukan data mahasiswa dengan kata kunci"' . htmlspecialchars($keyword) . '".'
+                            ? 'Tidak ditemukan data mahasiswa dengan kata kunci "' . htmlspecialchars($keyword) . '".'
                             : 'Belum ada data mahasiswa yang tersimpan.' ?>
-                    </td>
-                    </tr> 
-
-                    <!-- Percobaan 4-2 Langkah 4 -->
-                    
+                        </td>
+                    </tr>
                 <?php else: ?>
-
                     <!-- Percobaan 4-2 Langkah 3 -->
                     <?php foreach ($daftar_mahasiswa as $index => $mhs): ?>
                         <tr>
@@ -138,12 +130,10 @@ require_once __DIR__ . '/includes/footer.php';
                             <td><?= htmlspecialchars($mhs['angkatan']) ?></td>
                             <td><a href="mailto:<?= htmlspecialchars($mhs['email']) ?>" class="link-email"><?= htmlspecialchars($mhs['email']) ?></a></td>
                             <td>
-                                <!-- Percobaan 4-2 Langkah 5 -->
-                                <a href="proses_hapus.php?id=<?=urlencode($mhs['npm']) ?>"
-                                class="btn btn-danger btn-sm"
-                                onclick="return confirm('Apakahh Anda yakin ingin menghapus mahasiswa: <?= 
-                                htmlspecialchars(addslashes($mhs['nama'])) ?> (npm: <?= htmlspecialchars($mhs['npm']) ?>');">
-                                >Hapus</a>
+                                <!-- Percobaan 4-2 Langkah 5 (Diubah ?id= menjadi ?npm= dan dihapus > ganda) -->
+                                <a href="proses_hapus.php?npm=<?= urlencode($mhs['npm']) ?>"
+                                   class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Apakah Anda yakin ingin menghapus mahasiswa: <?= htmlspecialchars(addslashes($mhs['nama'])) ?> (npm: <?= htmlspecialchars($mhs['npm']) ?>)?');">Hapus</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -175,7 +165,7 @@ require_once __DIR__ . '/includes/footer.php';
                         placeholder="Contoh: 230101001" 
                         required 
                         pattern="[0-9]{8,12}">
-                    <span class="form-help">* Wajib 8-12 digit angka.</span>
+                    <span class="form-help">Wajib 8-12 digit angka.</span>
                 </div>
 
                 <div class="form-group">
@@ -188,7 +178,7 @@ require_once __DIR__ . '/includes/footer.php';
                         placeholder="Contoh: Ahmad Fauzi" 
                         required 
                         minlength="3">
-                    <span class="form-help">* Minimal 3 karakter.</span>
+                    <span class="form-help">Minimal 3 karakter.</span>
                 </div>
 
                 <div class="form-group">
@@ -200,7 +190,7 @@ require_once __DIR__ . '/includes/footer.php';
                         <option value="Teknologi Informasi">Teknologi Informasi</option>
                         <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
                     </select>
-                    <span class="form-help">* Pilih salah satu program studi.</span>
+                    <span class="form-help">Pilih salah satu program studi.</span>
                 </div>
 
                 <div class="form-group">
@@ -214,7 +204,7 @@ require_once __DIR__ . '/includes/footer.php';
                         required 
                         min="2018" 
                         max="2026">
-                    <span class="form-help">* Tahun antara 2018 - 2026.</span>
+                    <span class="form-help">Tahun antara 2018 - 2026.</span>
                 </div>
 
                 <div class="form-group full-width">
@@ -226,7 +216,7 @@ require_once __DIR__ . '/includes/footer.php';
                         class="form-input" 
                         placeholder="Contoh: ahmad.fauzi@example.com" 
                         required>
-                    <span class="form-help">* Masukkan alamat email valid.</span>
+                    <span class="form-help">Masukkan alamat email valid.</span>
                 </div>
             </div>
 
@@ -239,3 +229,4 @@ require_once __DIR__ . '/includes/footer.php';
 </section>
 
 <!-- memanggil file footer.php -->
+<?php require_once __DIR__ . '/includes/footer.php'; ?>
